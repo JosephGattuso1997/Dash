@@ -3,7 +3,6 @@ from dash.dependencies import Input, Output
 import dash_core_components as dcc
 import dash_html_components as html
 import pandas as pd
-import numpy as np
 
 
 data = pd.read_csv("metrics.csv") 
@@ -19,6 +18,7 @@ external_stylesheets = [
     },
 ]
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+server = app.server
 app.title = "Dataset Refresh Analytics: Understand Your Datasets!"
 
 app.layout = html.Div(
