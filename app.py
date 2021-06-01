@@ -12,7 +12,6 @@ VALID_USERNAME_PASSWORD_PAIRS = {
 data = pd.read_csv("metrics.csv") 
 data = data.dropna()
 data["Date"] = pd.to_datetime(data.time_started)
-#data = data.sort_values("Date", inplace=True)
 
 external_stylesheets = [
     {
@@ -23,7 +22,7 @@ external_stylesheets = [
 ]
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
-app.title = "Dataset Refresh Analytics: Understand Your Datasets!"
+app.title = "Open Data Refresh Analytics Dashboard"
 auth = dash_auth.BasicAuth(
     app,
     VALID_USERNAME_PASSWORD_PAIRS
@@ -56,7 +55,7 @@ app.layout = html.Div(
                             options=[
                                 {"label": region, "value": region} for region in data.datasetName
                             ],
-                            value="NYCC_BOATSFORHIRE",
+                            value="ITS_ACTIVITYLOGDATASET",
                             clearable=False,
                             className="dropdown",
                         ),
