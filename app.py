@@ -2,8 +2,12 @@ import dash
 from dash.dependencies import Input, Output
 import dash_core_components as dcc
 import dash_html_components as html
+import dash_auth
 import pandas as pd
 
+VALID_USERNAME_PASSWORD_PAIRS = {
+    'hello': 'world'
+}
 
 data = pd.read_csv("metrics.csv") 
 data = data.dropna()
@@ -20,6 +24,11 @@ external_stylesheets = [
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
 app.title = "Dataset Refresh Analytics: Understand Your Datasets!"
+auth = dash_auth.BasicAuth(
+    app,
+    VALID_USERNAME_PASSWORD_PAIRS
+)
+
 
 app.layout = html.Div(
     children=[
